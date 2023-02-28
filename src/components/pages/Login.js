@@ -1,18 +1,17 @@
 import styled from "styled-components";
-import Background from "../Background";
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const Wrapper = styled.div`
-  width: 40%;
+  width: 25%;
   padding: 20px;
   background-color: white;
 `;
@@ -24,19 +23,14 @@ const Title = styled.h1`
 
 const Form = styled.form`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 `;
 
 const Input = styled.input`
   flex: 1;
   min-width: 40%;
-  margin: 20px 10px 0px 0px;
+  margin: 10px 0;
   padding: 10px;
-`;
-
-const Agreement = styled.span`
-  font-size: 12px;
-  margin: 20px 0px;
 `;
 
 const Button = styled.button`
@@ -46,31 +40,35 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
+  margin-bottom: 10px;
 `;
 
-const Register = () => {
+const Link = styled.a`
+  margin: 5px 0px;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+const Login = () => {
+    const navigate = useNavigate();
+
+    const navigatetoregister = () => {
+      navigate('/sign-up');
+    };
   return (
-    <Background>
     <Container>
       <Wrapper>
-        <Title>CREATE AN ACCOUNT</Title>
+        <Title>SIGN IN</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
           <Input placeholder="username" />
-          <Input placeholder="email" />
           <Input placeholder="password" />
-          <Input placeholder="confirm password" />
-          <Agreement>
-            By creating an account, I consent to the processing of my personal
-            data in accordance with the <b>PRIVACY POLICY</b>
-          </Agreement>
-          <Button>CREATE</Button>
+          <Button>LOGIN</Button>
+          <Link onClick={navigatetoregister}>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>
-    </Background>
   );
 };
 
-export default Register;
+export default Login;
