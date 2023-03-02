@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
+
 function Navbar() {
+  const navigate = useNavigate();
+
+    const navigatetoregister = () => {
+      navigate('/sign-up');
+    };
+
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -58,18 +65,8 @@ function Navbar() {
                 Products
               </Link>
             </li>
-
-            <li>
-              <Link
-                to='/sign-up'
-                className='nav-links-mobile'
-                onClick={closeMobileMenu}
-              >
-                Sign Up
-              </Link>
-            </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+          {button && <Button onClick={navigatetoregister} buttonStyle='btn--outline'>SIGN UP</Button>}
         </div>
       </nav>
     </>

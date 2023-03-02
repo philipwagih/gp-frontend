@@ -4,7 +4,7 @@ import Background from "../Background";
 
 const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 83vh;
   background-size: cover;
   display: flex;
   align-items: center;
@@ -40,7 +40,8 @@ const Agreement = styled.span`
 `;
 
 const Button = styled.button`
-  width: 40%;
+  width: 47%;
+  margin: auto;
   border: none;
   padding: 15px 20px;
   background-color: teal;
@@ -66,6 +67,7 @@ const Register = () => {
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
           <Button>CREATE</Button>
+          <Button>COMPANY REGISTRATION</Button>
         </Form>
       </Wrapper>
     </Container>
