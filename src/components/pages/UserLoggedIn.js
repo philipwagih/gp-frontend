@@ -14,12 +14,13 @@ const UserLoggedIn = props => {
 	const handleClick = event => {
 	  hiddenFileInput.current.click();
 	};
-	
+
 	// Call a function (passed as a prop from the parent component)
 	// to handle the user-selected file 
 	const handleChange = event => {
 	  const fileUploaded = event.target.files[0];
-	  props.handleFile(fileUploaded);
+	  console.log(fileUploaded.type)
+	  //props.handleFile(fileUploaded);
 	};
 	return(
 		<div className='land-hero-container'>
