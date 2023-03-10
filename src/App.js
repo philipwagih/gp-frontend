@@ -8,6 +8,7 @@ import Products from './components/pages/Products';
 import SignUp from './components/pages/SignUp';
 import Landing from './components/pages/Landing';
 import UserLoggedIn from './components/pages/UserLoggedIn';
+import Qrscreen from './components/pages/Qrscreen';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/sign-up' element={<SignUp/>} />
           <Route path='/landing' element={<Landing/>} />
           <Route path='/loggedin' element={<UserLoggedIn/>} />
+          <Route path='/qrscreen' element={<Qrscreen/>} />
         </Routes>
       </Router>
     </>

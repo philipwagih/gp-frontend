@@ -2,13 +2,26 @@ import React from 'react';
 import '../../App.css';
 import { Button } from '../Button';
 import '../UserLoggedIn.css'
-// import { ChangeEvent, useState, use } from 'react';
+import QrScanner from 'qr-scanner';
+import { ChangeEvent, useState, use } from 'react';
 
 
 const UserLoggedIn = props => {
+
+	const [result, setResult] = useState("")
+
+	//QR Code Read function
+	const readQcode = (e) => {
+		const file = e.target.files[0];
+		if (!file) {
+			return;
+		}
+		QrScanner.scanImage(file, { returnDetailedScanResult: true })
+			.then(result => console.log(result.data))
+			.catch(e => console.log(e));
+	  }
 	// Create a reference to the hidden file input element
 	const hiddenFileInput = React.useRef(null);
-  
 	// Programatically click the hidden file input element
 	// when the Button component is clicked
 	const handleClick = event => {
@@ -33,7 +46,8 @@ const UserLoggedIn = props => {
 					type="file"
 					accept="image/*"
 					ref={hiddenFileInput}
-					onChange={handleChange}
+					// onChange={handleChange}
+					onChange={(e) => readQcode(e)}
 					style={{display: 'none'}} />
 			</div>
 		</div>

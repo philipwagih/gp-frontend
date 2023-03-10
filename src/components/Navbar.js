@@ -35,8 +35,8 @@ function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
-          <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            BLCKCHN
+          <Link to='/' className='navbar-logo' onClick={closeMobileMenu} >
+            Graduation Project
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -47,7 +47,7 @@ function Navbar() {
                 Home
               </Link>
             </li>
-            <li className='nav-item'>
+            {/* <li className='nav-item'>
               <Link
                 to='/services'
                 className='nav-links'
@@ -55,8 +55,9 @@ function Navbar() {
               >
                 Services
               </Link>
-            </li>
-            <li className='nav-item'>
+            </li> */}
+
+            {/* <li className='nav-item'>
               <Link
                 to='/products'
                 className='nav-links'
@@ -64,7 +65,7 @@ function Navbar() {
               >
                 Products
               </Link>
-            </li>
+            </li> */}
           </ul>
           {button && <Button onClick={navigatetoregister} buttonStyle='btn--outline'>SIGN UP</Button>}
         </div>
