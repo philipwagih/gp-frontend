@@ -1,5 +1,8 @@
+import React, {Component} from 'react'
 import styled from "styled-components";
-import {useNavigate} from 'react-router-dom';
+import {login} from '../../web3Client';
+
+
 
 
 const Container = styled.div`
@@ -50,25 +53,40 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-const Login = () => {
-    const navigate = useNavigate();
+class Login extends Component{
+    
+    state = {
+        username: '', 
+        userpass: ''
+      }
+ 
+handleChange = (e) =>{
+    this.setState({
+      [e.target.name] : e.target.value
+    })
+}
 
-    const navigatetoregister = () => {
-      navigate('/sign-up');
-    };
+ handleSubmit = (e) => {
+    e.preventDefault();
+    login(this.state.username,this.state.userpass).then((res)=>{
+      console.log(res)
+    }); 
+    }
+
+render(){
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
-        <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
-          <Link onClick={navigatetoregister}>CREATE A NEW ACCOUNT</Link>
+        <Form onSubmit={this.handleSubmit}>
+          <Input placeholder="username" id='username' onChange={this.handleChange}/>
+          <Input type='password' placeholder="password" name='userpass' onChange={this.handleChange}/>
+          <Button type='submit'>LOGIN</Button>
+          <Link to="/sign-up">CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
     </Container>
   );
-};
-
+}
+}
 export default Login;

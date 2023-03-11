@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import The_Contract from '../build/contracts/System.json';
+import The_Contract from './System.json';
 //import UserContract from '../build/contracts/User_Con.json';
 
 let selectedAccount;
