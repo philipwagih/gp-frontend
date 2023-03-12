@@ -1,5 +1,7 @@
+import React, {Component} from 'react'
 import styled from "styled-components";
 import Background from "../Background";
+import {register} from '../../web3Client';
 
 
 const Container = styled.div`
@@ -34,14 +36,14 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Agreement = styled.span`
-  font-size: 12px;
-  margin: 20px 0px;
-`;
+// const Agreement = styled.span`
+//   font-size: 12px;
+//   margin: 20px 0px;
+// `;
 
 const Button = styled.button`
   width: 47%;
-  margin: auto;
+  margin: 20px 5px;
   border: none;
   padding: 15px 20px;
   background-color: teal;
@@ -49,23 +51,65 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Register = () => {
+class SignUp extends Component{  
+  
+  constructor() {
+    super();
+    this.state = {
+      input: {}
+    };
+     
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  validate(){
+    let input = this.state.input;
+    let isValid = true;
+    if (typeof input['userpass'] !== "undefined" && typeof input['confirmpass'] !== "undefined") 
+        if (input['userpass'] !== input['confirmpass']) 
+                isValid = false;
+      return isValid;
+    }
+
+    handleChange(event) {
+      let input = this.state.input;
+      input[event.target.name] = event.target.value;
+    
+      this.setState({
+        input
+      });
+    }
+
+    handleSubmit = (e) => {
+      e.preventDefault();
+
+      console.log(this.validate())
+      console.log(this.state);
+      if(this.validate==true)
+      {
+        register(this.state.input['username'],
+        this.state.input['useremail'],
+        this.state.input['userpass'])
+      }
+      else{
+        //invalid pass
+      }
+      }
+render(){
   return (
     <Background>
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
-          <Agreement>
-            By creating an account, I consent to the processing of my personal
-            data in accordance with the <b>PRIVACY POLICY</b>
-          </Agreement>
+        <Form onSubmit={this.handleSubmit}>
+          {/* <Input placeholder="name" />
+          <Input placeholder="last name" /> */}
+
+          <Input type='text' name='username' placeholder="username" required onChange={this.handleChange}/>
+          <Input placeholder="email" name='useremail' required onChange={this.handleChange}/>
+          <Input type='password' name='userpass' placeholder="password" required onChange={this.handleChange}/>
+          <Input type='password' name='confirmpass' placeholder="confirm password" required onChange={this.handleChange}/>
           <Button>CREATE</Button>
           <Button>COMPANY REGISTRATION</Button>
         </Form>
@@ -74,5 +118,5 @@ const Register = () => {
     </Background>
   );
 };
-
-export default Register;
+}
+export default SignUp;
